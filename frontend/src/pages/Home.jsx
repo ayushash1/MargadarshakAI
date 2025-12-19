@@ -5,7 +5,7 @@
 
 import { Link } from 'react-router-dom';
 // IMPORT UPDATED: Pointing to your specific file
-import heroImage from '../assets/Image.jpg'; 
+import heroImage from '../assets/image.jpg'; 
 import './Home.css';
 
 const Home = () => {
