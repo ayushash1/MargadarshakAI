@@ -113,7 +113,9 @@ export const recommendForUser = async (req, res) => {
 
     try {
       // Call ML Service
-      const mlResponse = await fetch("http://localhost:8000/recommend", {
+      const ML_SERVICE_URL =
+        process.env.ML_SERVICE_URL || "http://localhost:8000";
+      const mlResponse = await fetch(`${ML_SERVICE_URL}/recommend`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(mlPayload),
