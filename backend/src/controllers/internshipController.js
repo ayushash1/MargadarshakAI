@@ -113,8 +113,15 @@ export const recommendForUser = async (req, res) => {
 
     try {
       // Call ML Service
-      const ML_SERVICE_URL =
-        process.env.ML_SERVICE_URL || "http://localhost:8000";
+      let ML_SERVICE_URL = process.env.ML_SERVICE_URL;
+
+      if (!ML_SERVICE_URL) {
+        if (process.env.NODE_ENV === "production") {
+          ML_SERVICE_URL = "https://ayush-ash1-margadarshakai-ml.hf.space";
+        } else {
+          ML_SERVICE_URL = "http://localhost:8000";
+        }
+      }
       const mlResponse = await fetch(`${ML_SERVICE_URL}/recommend`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
